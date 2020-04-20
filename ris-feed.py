@@ -65,13 +65,14 @@ for data in ws:
                 if result is not False:
                     new_as_path_named = list(get_asn_name(number) for number in msg['path'])
                     previous_as_path_named = list(get_asn_name(number) for number in prefix_history[prefix]['msg']['path'])
-                    print(f"AS Path Change: {prefix}")
+                    print(f"AS Path Changed: {prefix}")
                     print(previous_as_path_named)
                     print(new_as_path_named)
 
                     # check if origin ASN has changed
                     result = origin_asn_changed(msg, prefix)
                     if result is not False:
+                        print(f"Origin AS Changed: {prefix}")
                         print(result)
             
             # update prefix history with latest value
