@@ -9,3 +9,20 @@
     - Routing history
     - AS-centric view
 
+## Data Models
+
+- Prefixes
+  - Network Address
+  - Related Peer
+  - Owning ASN
+- ASNs
+  - Name
+  - Number
+- Events
+  - Timestamp
+  - Issue [hijack, invalid annoucement]
+  - Related prefix
+  - Related Owning ASN
+  - Annoucing ASN
+  - AS Path
+  - Peer
