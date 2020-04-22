@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventDashboardComponent implements OnInit {
 
+  prefixes = ['192.168.1.0/23', '10.22.1.0/20', '192.168.55.0/24', '192.168.99.0/24'];
   constructor() { }
 
   ngOnInit(): void {
