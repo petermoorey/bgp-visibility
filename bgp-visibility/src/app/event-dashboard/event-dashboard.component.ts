@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BgpDataService } from '../bgp-data.service';
 
 @Component({
   selector: 'app-event-dashboard',
@@ -7,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EventDashboardComponent implements OnInit {
 
-  prefixes = ['192.168.1.0/23', '10.22.1.0/20', '192.168.55.0/24', '192.168.99.0/24'];
-  constructor() { }
+  prefixes = [];
+  peers = [];
+  ASN = '';
+  ASNStatus = '';
+  REST_API_QUERY = '';
 
-  ngOnInit(): void {
+  constructor(private dataService: BgpDataService) {}
+
+  ngOnInit() {
   }
 
+  onClickAddASN() {
+    this.ASNStatus = 'entered';
+    // get prefixes
+    this.REST_API_QUERY = 'announced-prefixes/data.json?resource=AS' + this.ASN + '&starttime=2019-12-12T12:00';
+    this.dataService.sendGetRequest(this.REST_API_QUERY).subscribe((data: any[]) =>  {
+      this.prefixes = data.data.prefixes;
+    });
+    // get peers
+    this.REST_API_QUERY = 'asn-neighbours/data.json?resource=AS' + this.ASN;
+    this.dataService.sendGetRequest(this.REST_API_QUERY).subscribe((data: any[]) =>  {
+      this.peers = data.data.neighbours;
+    });
+  }
 }
