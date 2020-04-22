@@ -12,13 +12,21 @@ import { AppComponent } from './app.component';
 import { ConfigListComponent } from './config-list/config-list.component';
 import { ConfigEditComponent } from './config-edit/config-edit.component';
 import { EventDashboardComponent } from './event-dashboard/event-dashboard.component';
+import { NavComponent } from './nav/nav.component';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     ConfigListComponent,
     ConfigEditComponent,
-    EventDashboardComponent
+    EventDashboardComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -28,7 +36,13 @@ import { EventDashboardComponent } from './event-dashboard/event-dashboard.compo
     MatIconModule,
     MatButtonModule,
     MatInputModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatCardModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

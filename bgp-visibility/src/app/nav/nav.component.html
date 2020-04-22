@@ -1,0 +1,58 @@
+<mat-toolbar>  
+  <mat-toolbar-row>
+    <span>BGP Monitoring</span>
+    <span style="width: 15px;"></span>
+    <span>
+      <button mat-button [matMenuTriggerFor]="menu_monitoring">Monitoring</button>
+      <mat-menu #menu_monitoring="matMenu">
+        <button mat-menu-item>Prefixes</button>
+        <button mat-menu-item>Autonomous System Number</button>
+      </mat-menu>
+    </span>
+    <span>
+      <button mat-button [matMenuTriggerFor]="menu_configuration">Configuration</button>
+      <mat-menu #menu_configuration="matMenu">
+        <button mat-menu-item>Prefixes</button>
+        <button mat-menu-item>Autonomous System Number</button>
+      </mat-menu>
+    </span>
+    <span class="fill-remaining-space"></span>
+    <span>
+      <button mat-icon-button [matMenuTriggerFor]="menu_settings" aria-label="Example icon-button with a menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu_settings="matMenu">
+        <button mat-menu-item>
+          <mat-icon>perm_identity</mat-icon>
+          <span>My Profile</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable notifications</span>
+        </button>
+      </mat-menu>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding-top: 10px">
+  <mat-card class="example-card" >
+    <mat-card-header>
+      <mat-card-title>BGP Prefixes</mat-card-title>
+      <mat-card-subtitle>List of monitored prefixes</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        <ul>
+          <li>192.168.1.0/24</li>
+          <li>192.168.23.0/24</li>
+          <li>192.168.44.0/24</li>
+        </ul>>
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Edit</button>
+      <button mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
