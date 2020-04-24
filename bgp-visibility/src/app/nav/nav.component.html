@@ -2,6 +2,7 @@
   <mat-toolbar-row>
     <span>BGP Monitoring</span>
     <span style="width: 15px;"></span>
+
     <span>
       <button mat-button [matMenuTriggerFor]="menu_monitoring">Monitoring</button>
       <mat-menu #menu_monitoring="matMenu">
@@ -9,6 +10,7 @@
         <button mat-menu-item>Autonomous System Number</button>
       </mat-menu>
     </span>
+
     <span>
       <button mat-button [matMenuTriggerFor]="menu_configuration">Configuration</button>
       <mat-menu #menu_configuration="matMenu">
@@ -16,9 +18,31 @@
         <button mat-menu-item>Autonomous System Number</button>
       </mat-menu>
     </span>
+
     <span class="fill-remaining-space"></span>
+
     <span>
-      <button mat-icon-button [matMenuTriggerFor]="menu_settings" aria-label="Example icon-button with a menu">
+      <button mat-button [matMenuTriggerFor]="menu_events">
+        <mat-icon matBadge="2" matBadgeColor="warn">announcement</mat-icon>
+      </button>
+      <mat-menu #menu_events="matMenu">
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable notifications</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>error</mat-icon>
+          <span>Prefix 192.168.55.0/24 hijacked by Bad-Org</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>warning</mat-icon>
+          <span>Prefix 10.5.22.0/24 announced by New-Org</span>
+        </button>
+      </mat-menu>
+    </span>
+
+    <span>
+      <button mat-button [matMenuTriggerFor]="menu_settings">
         <mat-icon>perm_identity</mat-icon>
       </button>
       <mat-menu #menu_settings="matMenu">
@@ -26,12 +50,9 @@
           <mat-icon>settings</mat-icon>
           <span>{{ settings.firstName }} {{ settings.lastName }}</span>
         </button>
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable notifications</span>
-        </button>
       </mat-menu>
     </span>
+
   </mat-toolbar-row>
 </mat-toolbar>
 <app-event-dashboard></app-event-dashboard>

@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatBadgeModule } from '@angular/material/badge';
 
 import { AppComponent } from './app.component';
 import { ConfigListComponent } from './config-list/config-list.component';
@@ -24,6 +25,7 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
+import { EventListComponent } from './event-list/event-list.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { SettingsComponent } from './settings/settings.component';
     ConfigEditComponent,
     EventDashboardComponent,
     NavComponent,
-    SettingsComponent
+    SettingsComponent,
+    EventListComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,8 @@ import { SettingsComponent } from './settings/settings.component';
     MatExpansionModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatBadgeModule
   ],
   providers: [],
   bootstrap: [AppComponent]
