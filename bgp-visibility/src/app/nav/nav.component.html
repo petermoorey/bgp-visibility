@@ -21,23 +21,17 @@
 
     <span class="fill-remaining-space"></span>
 
-    <span>
+    <span *ngIf="events.length > 0" >
       <button mat-button [matMenuTriggerFor]="menu_events">
-        <mat-icon matBadge="2" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon matBadge="{{ events.length }}" matBadgeColor="warn">announcement</mat-icon>
       </button>
       <mat-menu #menu_events="matMenu">
-        <button mat-menu-item>
-          <mat-icon>notifications_off</mat-icon>
-          <span>Disable notifications</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>error</mat-icon>
-          <span>Prefix 192.168.55.0/24 hijacked by Bad-Org</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>warning</mat-icon>
-          <span>Prefix 10.5.22.0/24 announced by New-Org</span>
-        </button>
+        <div *ngFor="let event of events">
+          <button mat-menu-item>
+            <mat-icon>error</mat-icon>
+            <span>{{ event }} </span>
+          </button>
+        </div>
       </mat-menu>
     </span>
 
@@ -50,9 +44,14 @@
           <mat-icon>settings</mat-icon>
           <span>{{ settings.firstName }} {{ settings.lastName }}</span>
         </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable notifications</span>
+        </button>
       </mat-menu>
     </span>
 
   </mat-toolbar-row>
 </mat-toolbar>
+<app-config-edit (eventCreated)="processEvents($event)"></app-config-edit>
 <app-event-dashboard></app-event-dashboard>
