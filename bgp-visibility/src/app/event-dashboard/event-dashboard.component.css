@@ -1,3 +1,10 @@
-.custom-card {
-    min-width: 400px;
+.custom-width {
+    width: 100pc;
   }
+
+.custom-progress-bar {
+  display: flex;
+  align-content: center;
+  align-items: center;
+  height: 60px;
+}

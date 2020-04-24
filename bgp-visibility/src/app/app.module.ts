@@ -19,7 +19,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ConfigListComponent,
     ConfigEditComponent,
     EventDashboardComponent,
-    NavComponent
+    NavComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +49,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    FlexLayoutModule
+    MatExpansionModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

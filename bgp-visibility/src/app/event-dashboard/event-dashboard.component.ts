@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BgpDataService } from '../bgp-data.service';
 
+
 @Component({
   selector: 'app-event-dashboard',
   templateUrl: './event-dashboard.component.html',
@@ -10,26 +11,45 @@ export class EventDashboardComponent implements OnInit {
 
   prefixes = [];
   peers = [];
+  peersNames = [];
+  overview = '';
   ASN = '';
-  ASNStatus = '';
+  Status = '';
   REST_API_QUERY = '';
 
-  constructor(private dataService: BgpDataService) {}
+
+  constructor(public dataService: BgpDataService) {}
 
   ngOnInit() {
   }
 
   onClickAddASN() {
-    this.ASNStatus = 'entered';
+    this.Status = 'started';
+
+    // get overview
+    this.dataService.getAsOverview(this.ASN).subscribe((data: any[]) =>  {
+      this.overview = data.data;
+    });
+
     // get prefixes
-    this.REST_API_QUERY = 'announced-prefixes/data.json?resource=AS' + this.ASN + '&starttime=2019-12-12T12:00';
-    this.dataService.sendGetRequest(this.REST_API_QUERY).subscribe((data: any[]) =>  {
+    this.dataService.getAsPrefixes(this.ASN).subscribe((data: any[]) =>  {
       this.prefixes = data.data.prefixes;
     });
+
     // get peers
-    this.REST_API_QUERY = 'asn-neighbours/data.json?resource=AS' + this.ASN;
-    this.dataService.sendGetRequest(this.REST_API_QUERY).subscribe((data: any[]) =>  {
+    this.dataService.getAsNeighbors(this.ASN).subscribe((data: any[]) =>  {
       this.peers = data.data.neighbours;
     });
+
+    // this.peers.forEach(function(value) {
+    //   console.log('processing' + value.asn);
+    //   this.dataService.getAsOverview('72').subscribe((data: any[]) =>  {
+    //     console.log('made api call');
+    //     // console.log(data.data);
+    //     // this.peersNames.push(data.data.holder);
+    //   });
+    // });
+
+    this.Status = 'finished';
   }
 }

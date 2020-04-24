@@ -1,4 +1,4 @@
-<mat-toolbar>  
+<mat-toolbar color="primary">  
   <mat-toolbar-row>
     <span>BGP Monitoring</span>
     <span style="width: 15px;"></span>
@@ -24,7 +24,7 @@
       <mat-menu #menu_settings="matMenu">
         <button mat-menu-item>
           <mat-icon>settings</mat-icon>
-          <span>My Profile</span>
+          <span>{{ settings.firstName }} {{ settings.lastName }}</span>
         </button>
         <button mat-menu-item>
           <mat-icon>notifications_off</mat-icon>
