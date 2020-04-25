@@ -27,5 +27,8 @@ COPY requirements.txt /tmp/pip-tmp/
 RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
     && rm -rf /tmp/pip-tmp
 
-EXPOSE 4200
-CMD ng serve --prod --host 0.0.0.0 --disableHostCheck
+EXPOSE 80
+RUN npm run build --prod
+
+FROM nginx:1.15.8-alpine
+COPY --from=builder /usr/src/app/dist/bgp-visibility/ /usr/share/nginx/html
