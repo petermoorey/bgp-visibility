@@ -23,7 +23,7 @@ on:
 env:
   RUN_PROJECT: ${{ secrets.RUN_PROJECT }}
   RUN_SA_EMAIL: ${{ secrets.RUN_SA_EMAIL }}
-  RUN_REGION: us-west1-a
+  RUN_REGION: us-central1
   RUN_SERVICE_NAME: bgp-viz
   REGISTRY_HOSTNAME: gcr.io
   GITHUB_SHA: ${{ github.sha }}
