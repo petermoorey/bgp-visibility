@@ -31,4 +31,4 @@ EXPOSE 80
 RUN npm run build --prod
 
 FROM nginx:1.15.8-alpine
-COPY --from=builder /usr/src/app/dist/bgp-visibility/ /usr/share/nginx/html
+COPY --from=builder /app/dist/bgp-visibility/ /usr/share/nginx/html
