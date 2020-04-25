@@ -71,4 +71,6 @@ jobs:
           --region "$RUN_REGION" \
           --image "$REGISTRY_HOSTNAME/$RUN_PROJECT/$RUN_SERVICE_NAME:$GITHUB_SHA" \
           --platform "managed" \
-          --allow-unauthenticated
+          --allow-unauthenticated \
+          --port 80 \
+          --max-instances 1 \

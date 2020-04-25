@@ -32,4 +32,3 @@ RUN npm run build --prod
 FROM nginx:1.15.8-alpine
 COPY --from=builder /app/dist/bgp-visibility/ /usr/share/nginx/html
 EXPOSE 80
-ENV PORT=80
