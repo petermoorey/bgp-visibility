@@ -27,23 +27,23 @@ export class EventDashboardComponent implements OnInit {
     this.Status = 'started';
 
     // get overview
-    this.dataService.getAsOverview(this.ASN).subscribe((data: any[]) =>  {
+    this.dataService.getAsOverview(this.ASN).subscribe((data: any[data]) =>  {
       this.overview = data.data;
     });
 
     // get prefixes
-    this.dataService.getAsPrefixes(this.ASN).subscribe((data: any[]) =>  {
+    this.dataService.getAsPrefixes(this.ASN).subscribe((data: any[data]) =>  {
       this.prefixes = data.data.prefixes;
     });
 
     // get peers
-    this.dataService.getAsNeighbors(this.ASN).subscribe((data: any[]) =>  {
+    this.dataService.getAsNeighbors(this.ASN).subscribe((data: any[data]) =>  {
       this.peers = data.data.neighbours;
     });
 
     // this.peers.forEach(function(value) {
     //   console.log('processing' + value.asn);
-    //   this.dataService.getAsOverview('72').subscribe((data: any[]) =>  {
+    //   this.dataService.getAsOverview('72').subscribe((data: any[data]) =>  {
     //     console.log('made api call');
     //     // console.log(data.data);
     //     // this.peersNames.push(data.data.holder);
