@@ -28,4 +28,4 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
     && rm -rf /tmp/pip-tmp
 
 EXPOSE 4200
-CMD ng serve --host 0.0.0.0 --disableHostCheck
+CMD ng serve --prod --host 0.0.0.0 --disableHostCheck
