@@ -66,7 +66,7 @@ jobs:
     # Deploy the Docker image to Google Cloud Run
     - name: Deploy
       run: |-
-        gcloud run deploy "$SERVICE_NAME" \
+        gcloud run deploy "$RUN_SERVICE_NAME" \
           --quiet \
           --region "$RUN_REGION" \
           --image "$REGISTRY_HOSTNAME/$RUN_PROJECT/$RUN_SERVICE_NAME:$GITHUB_SHA" \
