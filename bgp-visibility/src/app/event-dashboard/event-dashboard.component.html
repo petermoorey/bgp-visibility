@@ -1,11 +1,11 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding-top: 10px">
-  <mat-card>
+  <mat-card style="width: 100%; box-sizing: border-box;">
     <mat-card-header>
 
     </mat-card-header>
     <mat-card-content >
       <h2>Search</h2>
-      <mat-form-field appearance="fill">
+      <mat-form-field style="width:100%; max-width: 400px;" appearance="fill">
         <mat-label>Enter a BGP ASN</mat-label>
         <input matInput [(ngModel)]="ASN">
       </mat-form-field>
