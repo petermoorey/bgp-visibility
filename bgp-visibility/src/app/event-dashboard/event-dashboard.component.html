@@ -1,12 +1,12 @@
 <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding-top: 10px">
-  <mat-card class="custom-width">
+  <mat-card>
     <mat-card-header>
 
     </mat-card-header>
     <mat-card-content >
       <h2>Search</h2>
       <mat-form-field appearance="fill">
-        <mat-label>Enter a BGP Autonomous System Number</mat-label>
+        <mat-label>Enter a BGP ASN</mat-label>
         <input matInput [(ngModel)]="ASN">
       </mat-form-field>
     </mat-card-content>
@@ -20,7 +20,7 @@
   <div *ngIf="peers.length === 0">
     <mat-progress-spinner mode="indeterminate" style="margin: 0 10px; margin-top: 20px"></mat-progress-spinner>
   </div>
-  <mat-accordion class="custom-width">
+  <mat-accordion>
 
     <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
