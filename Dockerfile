@@ -8,14 +8,23 @@
 # https://github.com/microsoft/vscode-dev-containers/tree/v0.112.0/containers/python-3/.devcontainer/base.Dockerfile
 FROM mcr.microsoft.com/vscode/devcontainers/typescript-node:0-12
 
+WORKDIR /app
+
+COPY ./bgp-visibility/package.json /app/package.json
+RUN npm install
+RUN npm install -g @angular/cli
+
+COPY ./bgp-visibility /app
+
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
    && apt-get -y install --no-install-recommends python3-pip\
    && apt-get autoremove -y \
    && apt-get clean -y \
    && rm -rf /var/lib/apt/lists/*
-# ENV DEBIAN_FRONTEND=dialog
 
 COPY requirements.txt /tmp/pip-tmp/
-RUN pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
+RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
     && rm -rf /tmp/pip-tmp
+
+CMD ng serve --host 0.0.0.0
