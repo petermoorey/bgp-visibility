@@ -3,7 +3,7 @@
 {
 	"name": "Python 3/Angular",
 	"build": {
-		"dockerfile": "Dockerfile",
+		"dockerfile": "../Dockerfile",
 		"context": "..",
 	},
 
