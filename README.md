@@ -1,5 +1,7 @@
 # BGP Internet Routing Analysis
 
+![Build and Deploy to Cloud Run](https://github.com/pmoorey/bgp-visibility/workflows/Build%20and%20Deploy%20to%20Cloud%20Run/badge.svg?branch=master)
+
 ## Ideas
 - Visibility of changes in prefix origin ASN
 - Visibility of changes in prefix AS path
