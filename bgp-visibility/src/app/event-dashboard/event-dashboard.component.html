@@ -5,7 +5,7 @@
     </mat-card-header>
     <mat-card-content >
       <h2>Search</h2>
-      <mat-form-field appearance="fill" style="min-width:500px">
+      <mat-form-field appearance="fill">
         <mat-label>Enter a BGP Autonomous System Number</mat-label>
         <input matInput [(ngModel)]="ASN">
       </mat-form-field>
@@ -47,7 +47,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row wrap">
-        <mat-card *ngFor="let peer of peers" style="width:140px; margin: 10px;">
+        <mat-card *ngFor="let peer of peers" style="margin: 10px;">
           <mat-card-content>
             ASN {{ peer.asn }}<br>
             <!-- Level of Influence: -->
@@ -67,7 +67,7 @@
         </mat-panel-title>
       </mat-expansion-panel-header>
       <div fxLayout="row wrap">
-        <mat-card *ngFor="let prefix of prefixes" style="width:140px; margin: 10px;">
+        <mat-card *ngFor="let prefix of prefixes" style="margin: 10px;">
           <mat-card-content>
             {{ prefix.prefix }}
           </mat-card-content>
