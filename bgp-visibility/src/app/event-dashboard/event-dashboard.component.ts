@@ -12,10 +12,11 @@ export class EventDashboardComponent implements OnInit {
   prefixes = [];
   peers = [];
   peersNames = [];
-  overview = '';
+  overview;
   ASN = '';
   Status = '';
   REST_API_QUERY = '';
+  panelOpenState = false;
 
 
   constructor(public dataService: BgpDataService) {}
@@ -26,18 +27,57 @@ export class EventDashboardComponent implements OnInit {
   onClickAddASN() {
     this.Status = 'started';
 
+    interface Prefix {
+      prefix: string;
+    }
+
+    interface Prefixes {
+      prefixes: Prefix[];
+    }
+
+    interface PrefixResponse {
+      data: Prefixes;
+    }
+
+    interface Peer {
+      prefix: string;
+    }
+
+    interface Peers {
+      neighbours: Peer[];
+    }
+
+    interface PeersResponse {
+      data: Peers;
+    }
+
+    interface Block{
+      name: string;
+      desc: string;
+    }
+    interface Overview {
+      resource: string;
+      block: Block;
+      holder: string;
+      announced: boolean;
+    }
+    interface ResponseOverview {
+      data: Overview;
+    }
+
     // get overview
-    this.dataService.getAsOverview(this.ASN).subscribe((data: any[data]) =>  {
+    this.dataService.getAsOverview(this.ASN).subscribe((data: ResponseOverview) =>  {
       this.overview = data.data;
+      console.log(this.overview.holder);
     });
 
     // get prefixes
-    this.dataService.getAsPrefixes(this.ASN).subscribe((data: any[data]) =>  {
+    this.dataService.getAsPrefixes(this.ASN).subscribe((data: PrefixResponse) =>  {
       this.prefixes = data.data.prefixes;
     });
 
     // get peers
-    this.dataService.getAsNeighbors(this.ASN).subscribe((data: any[data]) =>  {
+    this.dataService.getAsNeighbors(this.ASN).subscribe((data: PeersResponse) =>  {
       this.peers = data.data.neighbours;
     });
 
