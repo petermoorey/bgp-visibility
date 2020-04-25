@@ -27,4 +27,5 @@ COPY requirements.txt /tmp/pip-tmp/
 RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
     && rm -rf /tmp/pip-tmp
 
-CMD ng serve --host 0.0.0.0
+EXPOSE 4200
+CMD ng serve --host 0.0.0.0 --disableHostCheck
