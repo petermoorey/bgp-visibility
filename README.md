@@ -4,7 +4,7 @@
 
 This is a personal project with two objectives; learn Angular frontend development, and provide a public service to disover information about Border Gateway Protocol (BGP), the routing protocol of the Internet. 
 
-You can visit the website at https://bgprouting.info.  It's a work in progress so don't expect much.  The current focus is to learn Angular, the functionality of the website itself isn't the first priority.
+You can visit the website at https://bgprouting.net.  It's a work in progress so don't expect much.  The current focus is to learn Angular, the functionality of the website itself isn't the first priority.
 
 ## Ideas
 
