@@ -8,7 +8,7 @@ You can visit the website at https://bgprouting.info.  It's a work in progress s
 
 ## Ideas
 
-Below are some ideas that I hope to incorporate into the website, thanks to /networking community on Reddit for some of these!
+Below are some ideas that I hope to incorporate into the website, thanks to r/networking community on Reddit for some of these!
 
 - Enable user to identify AS/prefixes of interest
 - Provide high level information
