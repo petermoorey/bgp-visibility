@@ -27,9 +27,9 @@ Below are some ideas that I hope to incorporate into the website, thanks to r/ne
     - Overview
     - Prefixes
     - Peers (with influence indicator)
-  - Configure an ASN (it will popup a notification using Angular event emmitor, but no additional functionality provided yet)
+  - Configure an ASN (it will popup a notification using Angular event emitter, but no additional functionality provided yet)
 - Setup Git Hub Action to containerize, build and publish the website to Google Cloud Run on each 'push' of new Git commit/s
-- Setup https://bgprouting.info website and related it to Google Cloud Run
+- Setup https://bgprouting.net website and related it to Google Cloud Run
 
 ## Sprint 2 (Future)
 - Complete 50% of Angular course
