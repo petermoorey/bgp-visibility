@@ -21,15 +21,15 @@
 
     <span class="fill-remaining-space"></span>
 
-    <span *ngIf="events.length > 0" >
+    <span *ngIf="(notifications | json) != '{}'" >
       <button mat-button [matMenuTriggerFor]="menu_events">
-        <mat-icon matBadge="{{ events.length }}" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon matBadge="{{ notificationsCount }}" matBadgeColor="warn">announcement</mat-icon>
       </button>
       <mat-menu #menu_events="matMenu">
-        <div *ngFor="let event of events">
+        <div *ngFor="let event of notifications | keyvalue">
           <button mat-menu-item>
             <mat-icon>error</mat-icon>
-            <span>{{ event }} </span>
+            <span>{{ event.value.message }} </span>
           </button>
         </div>
       </mat-menu>
@@ -54,5 +54,6 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div height=250px class="custom-img"></div>
+<app-config-list></app-config-list>
 <app-config-edit (eventCreated)="processEvents($event)"></app-config-edit>
 <app-event-dashboard></app-event-dashboard>

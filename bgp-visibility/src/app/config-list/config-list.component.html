@@ -1,1 +1,14 @@
-<p>config-list works!</p>
+<table>
+  <div *ngFor="let prefix of prefixList | keyvalue">
+    <tr>
+      <td>
+        {{ prefix.value.prefix }}
+      </td>
+      <td>
+        <button mat-menu-item>
+          <mat-icon (click)="onClickDeletePrefix(prefix.key)">delete</mat-icon>
+        </button>
+      </td>
+    </tr>
+  </div>
+</table>
