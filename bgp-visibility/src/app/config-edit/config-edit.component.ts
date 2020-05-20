@@ -1,5 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
+import { Notification } from '../notification.model';
+import { Prefix } from '../prefix.model';
 
 @Component({
   selector: 'app-config-edit',
@@ -7,8 +9,6 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./config-edit.component.css']
 })
 export class ConfigEditComponent implements OnInit {
-  @Output() eventCreated = new EventEmitter<object>();
-  prefixList = [];
   prefix = '';
   username = 'pmoorey';
 
@@ -18,21 +18,10 @@ export class ConfigEditComponent implements OnInit {
   }
 
   onClickAddPrefix() {
-    this.prefixList.push(this.prefix);
-
-    const notification = {
-      message: 'Added ' + this.prefix,
-      severity: 'info',
-      username: this.username,
-      seen: false
-    };
-
-    this.eventCreated.emit(notification);
-    // create prefix
-    const data = {
-      prefix: this.prefix,
-      username: this.username
-    };
-    this.dataService.createMonitoredPrefixes(data);
+    // create prefix and notify
+    const notification = new Notification(null, 'Added ' + this.prefix, 'info', this.username, true);
+    const prefix = new Prefix(null, this.prefix, this.username);
+    this.dataService.createPrefix(prefix);
+    this.dataService.createNotification(notification);
   }
 }

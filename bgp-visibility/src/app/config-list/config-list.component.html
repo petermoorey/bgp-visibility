@@ -1,12 +1,12 @@
 <table>
-  <div *ngFor="let prefix of prefixList | keyvalue">
+  <div *ngFor="let prefix of prefixes">
     <tr>
       <td>
-        {{ prefix.value.prefix }}
+        {{ prefix.prefix }}
       </td>
       <td>
         <button mat-menu-item>
-          <mat-icon (click)="onClickDeletePrefix(prefix.key)">delete</mat-icon>
+          <mat-icon (click)="onClickDeletePrefix(prefix)">delete</mat-icon>
         </button>
       </td>
     </tr>

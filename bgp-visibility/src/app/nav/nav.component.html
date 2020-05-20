@@ -21,15 +21,16 @@
 
     <span class="fill-remaining-space"></span>
 
-    <span *ngIf="(notifications | json) != '{}'" >
+    <span *ngIf="notifications.length > 0" >
       <button mat-button [matMenuTriggerFor]="menu_events">
-        <mat-icon matBadge="{{ notificationsCount }}" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon matBadge="{{ notifications.length }}" matBadgeColor="warn">announcement</mat-icon>
       </button>
       <mat-menu #menu_events="matMenu">
-        <div *ngFor="let event of notifications | keyvalue">
+        <div *ngFor="let event of notifications">
           <button mat-menu-item>
-            <mat-icon>error</mat-icon>
-            <span>{{ event.value.message }} </span>
+
+            <mat-icon>{{ event.severity }}</mat-icon>
+            <span>{{ event.message }} </span>
           </button>
         </div>
       </mat-menu>

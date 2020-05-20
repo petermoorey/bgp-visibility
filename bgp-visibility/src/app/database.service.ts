@@ -1,51 +1,56 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-import { Observable, throwError } from 'rxjs';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Notification} from './notification.model';
+import { Prefix } from './prefix.model';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class DatabaseService {
 
-  private url = 'https://bgp-visibility.firebaseio.com/';
+  constructor(private firestore: AngularFirestore) { }
 
-  constructor(private httpClient: HttpClient) { }
-
-  public getNotifications(username: string){
-    const query = 'notifications.json?orderBy="username"&equalTo="' + username + '"';
-    return this.httpClient.get(this.url + query);
+  // CRUD for notifications
+  public getNotifications() {
+    console.log('getting notifications ');
+    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.orderBy('created', 'desc'));
+    return notificationCollectionRef.snapshotChanges();
+  }
+  public createNotification(notification: Notification){
+    console.log('added notification ', notification.message);
+    delete notification.id;
+    return this.firestore.collection('notifications').add({created: firebase.firestore.FieldValue.serverTimestamp(), ...notification});
+  }
+  public updateNotification(notification: Notification){
+    console.log('updated notification ', notification.message);
+    delete notification.id;
+    this.firestore.collection('notifications').doc('notifications/' + notification.id).update({...notification});
+  }
+  public deleteNotification(notification: Notification){
+    console.log('deleted notification ', notification.message);
+    this.firestore.collection('notifications').doc(notification.id).delete();
   }
 
-  public createNotification(data: object){
-    const query = 'notifications.json';
-    return this.httpClient.post(this.url + query, data)
-    .subscribe(
-      data => console.log('success', data),
-      error => console.log('oops', error)
-    );
+  // CRUD for prefixes
+  public getPrefixes() {
+    console.log('getting prefixes ');
+    const prefixesCollectionRef = this.firestore.collection('prefixes', ref => ref.orderBy('prefix'));
+    return prefixesCollectionRef.snapshotChanges();
   }
-
-  public getMonitoredPrefixes(username: string){
-    const query = 'monitored_prefixes.json?orderBy="username"&equalTo="' + username + '"';
-    return this.httpClient.get(this.url + query);
+  public createPrefix(prefix: Prefix) {
+    console.log('added prefix ', prefix.prefix);
+    delete prefix.id;
+    return this.firestore.collection('prefixes').add({created: firebase.firestore.FieldValue.serverTimestamp(), ...prefix});
   }
-
-  public deleteMonitoredPrefixes(prefix: string){
-    const query = 'monitored_prefixes/' + prefix + '.json';
-    return this.httpClient.delete(this.url + query)
-    .subscribe(
-      data => console.log('success', data),
-      error => console.log('oops', error)
-    );
+  public updatePrefix(prefix: Prefix){
+    console.log('updated prefix ', prefix.prefix);
+    delete prefix.id;
+    this.firestore.collection('prefixes').doc('prefixes/' + prefix.id).update({...prefix});
   }
-
-  public createMonitoredPrefixes(data: object){
-    const query = 'monitored_prefixes.json';
-    return this.httpClient.post(this.url + query, data)
-    .subscribe(
-      data => console.log('success', data),
-      error => console.log('oops', error)
-    );
+  public deletePrefix(prefix: Prefix){
+    console.log('deleted prefix ', prefix.prefix);
+    this.firestore.collection('prefixes').doc(prefix.id).delete();
   }
 }

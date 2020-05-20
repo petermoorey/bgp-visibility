@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
+import { Prefix} from '../prefix.model';
+import { Notification } from '../notification.model';
 
 @Component({
   selector: 'app-config-list',
@@ -9,30 +11,25 @@ import { DatabaseService } from '../database.service';
 export class ConfigListComponent implements OnInit {
 
   username = 'pmoorey';
-  prefixList = {};
+  prefixes: Prefix[];
 
   constructor(public dataService: DatabaseService) {}
 
   ngOnInit(): void {
 
-    interface Prefix {
-      prefix: string;
-      username: string;
-    }
-    interface Prefixes {
-      [key: string]: Prefix;
-    }
-
     // get prefixes
-    this.dataService.getMonitoredPrefixes(this.username).subscribe((data: Prefixes) =>  {
-      this.prefixList = data;
-      console.log(this.prefixList);
+    this.dataService.getPrefixes().subscribe(data => {
+      this.prefixes = data.map(e => {
+        return { id: e.payload.doc.id, ...e.payload.doc.data() as Prefix} as Prefix;
+      });
     });
   }
-  onClickDeletePrefix(prefix) {
-    console.log('Deleted ' + prefix);
+
+  onClickDeletePrefix(prefix: Prefix) {
     // delete prefix
-    this.dataService.deleteMonitoredPrefixes(prefix);
+    const notification = new Notification(null, 'Deleted ' + prefix.prefix, 'info', this.username, false);
+    this.dataService.createNotification(notification);
+    this.dataService.deletePrefix(prefix);
   }
 
 }

@@ -27,6 +27,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
 import { EventListComponent } from './event-list/event-list.component';
 
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from '../environments/environment';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,7 +60,9 @@ import { EventListComponent } from './event-list/event-list.component';
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatProgressBarModule,
-    MatBadgeModule
+    MatBadgeModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

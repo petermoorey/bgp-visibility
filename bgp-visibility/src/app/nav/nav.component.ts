@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { Settings } from '../settings/settings.model';
 import { DatabaseService } from '../database.service';
+import { Notification } from '../notification.model';
+
 
 @Component({
   selector: 'app-nav',
@@ -17,9 +19,7 @@ export class NavComponent implements OnInit {
 
   settings = new Settings('Peter', 'Moorey', 'petermoorey@gmail.com');
   username = 'pmoorey';
-  events = [];
-  notifications = {};
-  notificationsCount = 0;
+  notifications: Notification[];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -27,29 +27,17 @@ export class NavComponent implements OnInit {
     shareReplay()
   );
 
-  processEvents(event: object){
-    this.dataService.createNotification(event);
-    console.log('received' + event);
+  processEvents(notification: Notification){
+    // this.dataService.createNotification(notification);
   }
 
 
-  ngOnInit(): void {
-
-    interface Notification {
-      message: string;
-      seen: boolean;
-      severity: string;
-      username: string;
-    }
-    interface Notifications {
-      [key: string]: Notification;
-    }
+  ngOnInit() {
     // get notifications
-    this.dataService.getNotifications(this.username).subscribe((data: Notifications) =>  {
-      this.notifications = data;
-      this.notificationsCount = Object.keys(this.notifications).length;
-      console.log(this.notifications);
-      }
-    );
+    this.dataService.getNotifications().subscribe(data => {
+      this.notifications = data.map(e => {
+        return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
+      });
+    });
   }
 }
