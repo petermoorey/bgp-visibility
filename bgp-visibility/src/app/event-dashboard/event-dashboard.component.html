@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding-top: 10px">
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
   <mat-card style="width: 100%; box-sizing: border-box;">
     <mat-card-header>
 
@@ -68,8 +68,11 @@
       </mat-expansion-panel-header>
       <div fxLayout="row wrap">
         <mat-card *ngFor="let prefix of prefixes" style="margin: 10px;">
-          <mat-card-content>
-            {{ prefix.prefix }}
+          <mat-card-content class="valign-center">
+            {{ prefix.prefix }} 
+            <button (click)="onClickAddPrefix(prefix.prefix)" color="primary" mat-icon-button aria-label="Monitor this prefix">
+              <mat-icon>add</mat-icon>
+            </button>
           </mat-card-content>
         </mat-card>
       </div>

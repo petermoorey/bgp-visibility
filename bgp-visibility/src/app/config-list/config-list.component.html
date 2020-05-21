@@ -4,7 +4,7 @@
     </mat-card-header>
     <mat-card-content >
       <h2>Monitored Prefixes</h2>
-      <table style="width:inherit;">
+      <table class="mat-table">
         <div *ngIf="prefixes.length == 0">No prefixes are monitored, search to add one</div>
         <div *ngFor="let prefix of prefixes">
           <tr>

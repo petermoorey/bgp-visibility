@@ -4,3 +4,8 @@
   align-items: center;
   height: 30px;
 }
+.valign-center {
+  display: inline-flex;
+  vertical-align: middle;
+  align-items: center;
+}
