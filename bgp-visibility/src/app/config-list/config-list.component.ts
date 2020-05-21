@@ -12,6 +12,7 @@ export class ConfigListComponent implements OnInit {
 
   username = 'pmoorey';
   prefixes: Prefix[];
+  displayedColumns: string[] = ['prefix', 'created', 'delete'];
 
   constructor(public dataService: DatabaseService) {}
 
