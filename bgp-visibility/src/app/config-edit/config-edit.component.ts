@@ -19,9 +19,10 @@ export class ConfigEditComponent implements OnInit {
 
   onClickAddPrefix() {
     // create prefix and notify
-    const notification = new Notification(null, 'Added ' + this.prefix, 'info', this.username, true);
+    const notification = new Notification(null, 'Added ' + this.prefix, 'info', this.username, false);
     const prefix = new Prefix(null, this.prefix, this.username);
     this.dataService.createPrefix(prefix);
     this.dataService.createNotification(notification);
+    this.prefix = '';
   }
 }

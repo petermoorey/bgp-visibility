@@ -18,15 +18,19 @@ export class DatabaseService {
     const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.orderBy('created', 'desc'));
     return notificationCollectionRef.snapshotChanges();
   }
+  public getUnreadNotificationCount() {
+    console.log('getting unread notification count ');
+    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.where('seen', '==', false).orderBy('created', 'desc'));
+    return notificationCollectionRef.snapshotChanges();
+  }
   public createNotification(notification: Notification){
     console.log('added notification ', notification.message);
     delete notification.id;
     return this.firestore.collection('notifications').add({created: firebase.firestore.FieldValue.serverTimestamp(), ...notification});
   }
   public updateNotification(notification: Notification){
-    console.log('updated notification ', notification.message);
-    delete notification.id;
-    this.firestore.collection('notifications').doc('notifications/' + notification.id).update({...notification});
+    console.log('updated notification ', notification.message, 'seen: ', notification.seen);
+    this.firestore.collection('notifications').doc(notification.id).set({...notification});
   }
   public deleteNotification(notification: Notification){
     console.log('deleted notification ', notification.message);
@@ -47,7 +51,7 @@ export class DatabaseService {
   public updatePrefix(prefix: Prefix){
     console.log('updated prefix ', prefix.prefix);
     delete prefix.id;
-    this.firestore.collection('prefixes').doc('prefixes/' + prefix.id).update({...prefix});
+    this.firestore.collection('prefixes').doc(prefix.id).update({...prefix});
   }
   public deletePrefix(prefix: Prefix){
     console.log('deleted prefix ', prefix.prefix);
