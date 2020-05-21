@@ -23,8 +23,8 @@
 
     <span>
       <button (click)="onClickMarkNotificationsRead()" mat-button [matMenuTriggerFor]="menu_events">
-        <mat-icon mat-icon *ngIf="notificationsCount.length > 0" matBadge="{{ notificationsCount.length }}" matBadgeColor="warn">announcement</mat-icon>
-        <mat-icon mat-icon *ngIf="notificationsCount.length == 0">announcement</mat-icon>
+        <mat-icon mat-icon *ngIf="notificationsUnread.length > 0" matBadge="{{ notificationsUnread.length }}" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon mat-icon *ngIf="notificationsUnread.length == 0">announcement</mat-icon>
       </button>
       <mat-menu #menu_events="matMenu">
         <div *ngFor="let event of notifications">

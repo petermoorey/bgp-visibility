@@ -20,7 +20,7 @@ export class NavComponent implements OnInit {
   settings = new Settings('Peter', 'Moorey', 'petermoorey@gmail.com');
   username = 'pmoorey';
   notifications: Notification[];
-  notificationsCount: Notification[];
+  notificationsUnread: Notification[];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -42,15 +42,14 @@ export class NavComponent implements OnInit {
     });
     // get notifications count
     this.dataService.getUnreadNotificationCount().subscribe(data => {
-      this.notificationsCount = data.map(e => {
+      this.notificationsUnread = data.map(e => {
         return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
       });
     });
-    console.log(this.notificationsCount);
   }
 
   onClickMarkNotificationsRead() {
-    this.notifications.forEach(notification => {
+    this.notificationsUnread.forEach(notification => {
       notification.seen = true;
       console.log('marking seen: ' + notification.message);
       this.dataService.updateNotification(notification);
