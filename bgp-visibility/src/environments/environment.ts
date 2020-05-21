@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   firebase: {
     apiKey: 'AIzaSyDRQG-8RkDuBibi3sz-bkH8dQFtwYc-UgQ',
-    authDomain: 'bgprouting-fae56.firebaseapp.com',
+    authDomain: 'auth.bgprouting.net',
     databaseURL: 'https://bgprouting-fae56.firebaseio.com',
     projectId: 'bgprouting-fae56',
     storageBucket: 'bgprouting-fae56.appspot.com',
