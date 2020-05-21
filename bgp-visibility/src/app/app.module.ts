@@ -29,7 +29,11 @@ import { EventListComponent } from './event-list/event-list.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,8 @@ import { environment } from '../environments/environment';
     EventDashboardComponent,
     NavComponent,
     SettingsComponent,
-    EventListComponent
+    EventListComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +67,10 @@ import { environment } from '../environments/environment';
     MatProgressBarModule,
     MatBadgeModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
