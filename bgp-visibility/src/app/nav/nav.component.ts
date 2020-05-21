@@ -5,7 +5,7 @@ import { map, shareReplay } from 'rxjs/operators';
 import { Settings } from '../settings/settings.model';
 import { DatabaseService } from '../database.service';
 import { Notification } from '../notification.model';
-
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-nav',
@@ -15,7 +15,7 @@ import { Notification } from '../notification.model';
 
 export class NavComponent implements OnInit {
 
-  constructor(private breakpointObserver: BreakpointObserver, public dataService: DatabaseService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public dataService: DatabaseService, public auth: AuthService) {}
 
   settings = new Settings('Peter', 'Moorey', 'petermoorey@gmail.com');
   username = 'pmoorey';

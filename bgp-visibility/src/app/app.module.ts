@@ -25,13 +25,11 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
-import { EventListComponent } from './event-list/event-list.component';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
-import { UserProfileComponent } from './user-profile/user-profile.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -43,8 +41,6 @@ import { AppRoutingModule } from './app-routing.module';
     EventDashboardComponent,
     NavComponent,
     SettingsComponent,
-    EventListComponent,
-    UserProfileComponent
   ],
   imports: [
     BrowserModule,
