@@ -29,6 +29,6 @@ RUN pip3 --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requ
 
 RUN npm run build --prod
 
-FROM nginx:1.15.8-alpine
+FROM nginx:latest
 COPY --from=builder /app/dist/bgp-visibility/ /usr/share/nginx/html
 EXPOSE 80

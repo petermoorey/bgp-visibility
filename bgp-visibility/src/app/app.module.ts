@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatTable } from '@angular/material/table';
 import { AppComponent } from './app.component';
 import { ConfigListComponent } from './config-list/config-list.component';
 import { EventDashboardComponent } from './event-dashboard/event-dashboard.component';
@@ -55,7 +54,6 @@ import { AppRoutingModule } from './app-routing.module';
     MatSidenavModule,
     MatListModule,
     MatCardModule,
-    MatTable,
     MatExpansionModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
