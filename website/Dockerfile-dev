@@ -1,7 +1,6 @@
 FROM node:latest
 
 WORKDIR /app/website
-
+COPY ./website/package.json /app
 RUN npm install -g @angular/cli
-RUN npm run build --prod
-ENTRYPOINT ng serve
+RUN npm run build

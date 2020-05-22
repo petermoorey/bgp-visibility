@@ -3,11 +3,11 @@
 {
 	"name": "Angular",
 	"build": {
-		"dockerfile": "../Dockerfile-dev",
+		"dockerfile": "../website/Dockerfile-dev",
 		"context": "..",
 	},
 	"workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=delegated",
-	"workspaceFolder": "/app",
+	"workspaceFolder": "/app/website",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 

@@ -1,12 +1,12 @@
 FROM node:latest as builder
 
-WORKDIR /app/website
-COPY ./website /app/website
+WORKDIR /app
+COPY ./website /app
 
 RUN npm install
 RUN npm install -g @angular/cli
 RUN npm run build --prod
 
 FROM nginx:latest
-COPY --from=builder /app/website/dist/bgp-visibility/ /usr/share/nginx/html
+COPY --from=builder /app/dist/bgp-visibility/ /usr/share/nginx/html
 EXPOSE 80
