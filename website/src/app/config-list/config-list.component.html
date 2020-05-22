@@ -16,7 +16,7 @@
   <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
     <mat-card style="width: 100%; box-sizing: border-box;">
       <mat-card-content>
-        <h2>My Prefixes ({{ prefixes.length}})</h2>
+        <h2>My Prefixes ({{ prefixes.length }})</h2>
         <table mat-table [dataSource]="prefixes" class="mat-elevation-z8">
 
           <!--- Note that these columns can be defined in any order.
@@ -36,16 +36,19 @@
 
           <!-- Event Column -->
           <ng-container matColumnDef="number_events">
-            <th mat-header-cell *matHeaderCellDef> Event Count (last 24hrs)</th>
-            <td mat-cell *matCellDef="let element"> {{events.length}} </td>
+            <th mat-header-cell *matHeaderCellDef> Event Count (24hrs)</th>
+            <td mat-cell *matCellDef="let element">
+              <mat-chip-list>
+              <mat-chip>{{ events.length }}</mat-chip>
+            </mat-chip-list></td>
           </ng-container>
           
           <!-- delete Column-->
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef> Delete</th>
-            <td mat-cell *matCellDef="let element"><button mat-menu-item>
+            <td mat-cell *matCellDef="let element">
               <mat-icon (click)="onClickDeletePrefix(element)">delete</mat-icon>
-            </button></td>
+            </td>
           </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

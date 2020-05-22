@@ -27,6 +27,12 @@ export class ConfigListComponent implements OnInit {
         return { id: e.payload.doc.id, ...e.payload.doc.data() as Prefix} as Prefix;
       });
     });
+    // get events
+    this.dataService.getEvents().subscribe(data => {
+      this.events = data.map(e => {
+        return { id: e.payload.doc.id, ...e.payload.doc.data() as Event} as Event;
+      });
+    });
   }
 
   onClickDeletePrefix(prefix: Prefix) {
@@ -35,12 +41,5 @@ export class ConfigListComponent implements OnInit {
     this.dataService.createNotification(notification);
     this.dataService.deletePrefix(prefix);
   }
-  getEvents(){
-    // get events
-    this.dataService.getEvents().subscribe(data => {
-      this.events = data.map(e => {
-        return {...e.payload.doc.data() as Event} as Event;
-      });
-    });
-  }
+
 }

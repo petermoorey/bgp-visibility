@@ -20,6 +20,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { SettingsComponent } from './settings/settings.component';
@@ -65,7 +66,8 @@ import { AppRoutingModule } from './app-routing.module';
     AngularFireAuthModule,
     RouterModule,
     AppRoutingModule,
-    MatTableModule
+    MatTableModule,
+    MatChipsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
