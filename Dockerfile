@@ -3,6 +3,7 @@ FROM node:latest as builder
 WORKDIR /app/website
 COPY ./website /app/website
 
+RUN npm install
 RUN npm install -g @angular/cli
 RUN npm run build --prod
 
