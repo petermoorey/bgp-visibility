@@ -3,6 +3,7 @@ import websocket
 import urllib.request
 
 
+
 prefix_history = {}
 asn_names = {}
 
@@ -32,7 +33,8 @@ def origin_asn_changed(msg, prefix):
     current_asn = msg['path'][-1]
     current_asn_name = asn_names.get(current_asn, current_asn)
     if current_asn != previous_asn:
-        return f"{prefix}: {previous_asn_name} --> {current_asn_name}"
+        msg = f"{prefix}: {previous_asn_name} --> {current_asn_name}"
+        return 
     else:
         return False
 

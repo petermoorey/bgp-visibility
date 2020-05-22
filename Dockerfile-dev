@@ -1,0 +1,7 @@
+FROM node:latest
+
+WORKDIR /app/website
+
+RUN npm install -g @angular/cli
+RUN npm run build --prod
+ENTRYPOINT ng serve

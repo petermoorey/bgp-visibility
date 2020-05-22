@@ -1,11 +1,13 @@
 // For format details, see https://aka.ms/vscode-remote/devcontainer.json or this file's README at:
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.112.0/containers/python-3
 {
-	"name": "Python 3/Angular",
+	"name": "Angular",
 	"build": {
-		"dockerfile": "../Dockerfile",
+		"dockerfile": "../Dockerfile-dev",
 		"context": "..",
 	},
+	"workspaceMount": "source=${localWorkspaceFolder},target=/app,type=bind,consistency=delegated",
+	"workspaceFolder": "/app",
 
 	// Set *default* container specific settings.json values on container create.
 	"settings": { 
@@ -27,7 +29,6 @@
 
 	// Add the IDs of extensions you want installed when the container is created.
 	"extensions": [
-		"ms-python.python",
 		"dbaeumer.vscode-eslint",
 		"ms-vscode.vscode-typescript-tslint-plugin"
 	],
