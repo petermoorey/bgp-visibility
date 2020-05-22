@@ -33,7 +33,14 @@
             <th mat-header-cell *matHeaderCellDef> Date Added </th>
             <td mat-cell *matCellDef="let element"> {{element.created.toDate() | date : 'yyyy-MM-dd HH:mm'}} </td>
           </ng-container>
-        
+
+          <!-- Event Column -->
+          <ng-container matColumnDef="number_events">
+            <th mat-header-cell *matHeaderCellDef> Event Count (last 24hrs)</th>
+            <td mat-cell *matCellDef="let element"> {{events.length}} </td>
+          </ng-container>
+          
+          <!-- delete Column-->
           <ng-container matColumnDef="delete">
             <th mat-header-cell *matHeaderCellDef> Delete</th>
             <td mat-cell *matCellDef="let element"><button mat-menu-item>

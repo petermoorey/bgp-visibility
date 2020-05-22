@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../database.service';
 import { Prefix} from '../prefix.model';
 import { Notification } from '../notification.model';
+import { Event } from '../event.model';
+
 
 @Component({
   selector: 'app-config-list',
@@ -12,7 +14,8 @@ export class ConfigListComponent implements OnInit {
 
   username = 'pmoorey';
   prefixes: Prefix[];
-  displayedColumns: string[] = ['prefix', 'created', 'delete'];
+  displayedColumns: string[] = ['prefix', 'created', 'number_events', 'delete'];
+  events = [];
 
   constructor(public dataService: DatabaseService) {}
 
@@ -32,5 +35,12 @@ export class ConfigListComponent implements OnInit {
     this.dataService.createNotification(notification);
     this.dataService.deletePrefix(prefix);
   }
-
+  getEvents(){
+    // get events
+    this.dataService.getEvents().subscribe(data => {
+      this.events = data.map(e => {
+        return {...e.payload.doc.data() as Event} as Event;
+      });
+    });
+  }
 }

@@ -12,6 +12,13 @@ export class DatabaseService {
 
   constructor(private firestore: AngularFirestore) { }
 
+  // events
+  public getEvents() {
+    console.log('getting events ');
+    const notificationCollectionRef = this.firestore.collection('events', ref => ref.orderBy('prefix'));
+    return notificationCollectionRef.snapshotChanges();
+  }
+
   // CRUD for notifications
   public getNotifications() {
     console.log('getting notifications ');
