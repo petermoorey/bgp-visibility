@@ -14,7 +14,7 @@ export class ConfigListComponent implements OnInit {
 
   username = 'pmoorey';
   prefixes: Prefix[];
-  displayedColumns: string[] = ['prefix', 'created', 'number_events', 'delete'];
+  displayedColumns: string[] = ['prefix', 'created', 'number_events', 'alert', 'delete'];
   events = [];
 
   constructor(public dataService: DatabaseService) {}
@@ -40,6 +40,16 @@ export class ConfigListComponent implements OnInit {
     const notification = new Notification(null, 'Deleted ' + prefix.prefix, 'info', this.username, false);
     this.dataService.createNotification(notification);
     this.dataService.deletePrefix(prefix);
+  }
+
+  getEventCount(prefix) {
+    let count = 0;
+    this.events.forEach(element => {
+      if (element.prefix === prefix) {
+        count ++;
+      }
+    });
+    return count;
   }
 
 }
