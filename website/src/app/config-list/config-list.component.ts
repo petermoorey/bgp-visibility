@@ -42,10 +42,19 @@ export class ConfigListComponent implements OnInit {
     this.dataService.deletePrefix(prefix);
   }
 
-  getEventCount(prefix) {
+  getEventCountOriginChanged(prefix) {
+    let count1 = 0;
+    this.events.forEach(element => {
+      if (element.prefix === prefix && element.type === 'as-origin-change') {
+        count1 ++;
+      }
+    });
+    return count1;
+  }
+  getEventCountPathChange(prefix) {
     let count = 0;
     this.events.forEach(element => {
-      if (element.prefix === prefix) {
+      if (element.prefix === prefix && element.type === 'as-path-change') {
         count ++;
       }
     });

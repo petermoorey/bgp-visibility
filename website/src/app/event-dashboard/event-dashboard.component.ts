@@ -28,7 +28,7 @@ export class EventDashboardComponent implements OnInit {
   onClickAddPrefix(prefixData: string) {
     // create prefix and notify
     const notification = new Notification(null, 'Added ' + prefixData, 'info', this.username, false);
-    const prefix = new Prefix(null, prefixData, this.username);
+    const prefix = new Prefix(null, prefixData, this.username, true);
     this.dataService.createPrefix(prefix);
     this.dataService.createNotification(notification);
   }

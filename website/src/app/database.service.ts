@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Notification} from './notification.model';
 import { Prefix } from './prefix.model';
+import { AuthService } from './auth.service';
 import * as firebase from 'firebase';
 
 @Injectable({
@@ -10,24 +11,27 @@ import * as firebase from 'firebase';
 
 export class DatabaseService {
 
-  constructor(private firestore: AngularFirestore) { }
+  constructor(private firestore: AngularFirestore, public auth: AuthService) { }
+  uid = 'jHYSjhmIJ1RLIEHuafXyhVvugax2';
+  user = this.auth.user$;
 
   // events
   public getEvents() {
+    console.log(this.auth.user$);
     console.log('getting events ');
-    const notificationCollectionRef = this.firestore.collection('events', ref => ref.orderBy('prefix'));
+    const notificationCollectionRef = this.firestore.collection('events', ref => ref.where('uid', '==', this.uid).orderBy('prefix'));
     return notificationCollectionRef.snapshotChanges();
   }
 
   // CRUD for notifications
   public getNotifications() {
     console.log('getting notifications ');
-    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.orderBy('created', 'desc'));
+    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.where('uid', '==', this.uid).orderBy('created', 'desc'));
     return notificationCollectionRef.snapshotChanges();
   }
   public getUnreadNotificationCount() {
     console.log('getting unread notification count ');
-    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.where('seen', '==', false).orderBy('created', 'desc'));
+    const notificationCollectionRef = this.firestore.collection('notifications', ref => ref.where('uid', '==', this.uid).where('seen', '==', false).orderBy('created', 'desc'));
     return notificationCollectionRef.snapshotChanges();
   }
   public createNotification(notification: Notification){
@@ -47,7 +51,7 @@ export class DatabaseService {
   // CRUD for prefixes
   public getPrefixes() {
     console.log('getting prefixes ');
-    const prefixesCollectionRef = this.firestore.collection('prefixes', ref => ref.orderBy('prefix'));
+    const prefixesCollectionRef = this.firestore.collection('prefixes', ref => ref.where('uid', '==', this.uid).orderBy('prefix'));
     return prefixesCollectionRef.snapshotChanges();
   }
   public createPrefix(prefix: Prefix) {

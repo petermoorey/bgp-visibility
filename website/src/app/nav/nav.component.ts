@@ -17,8 +17,6 @@ export class NavComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver, public dataService: DatabaseService, public auth: AuthService) {}
 
-  settings = new Settings('Peter', 'Moorey', 'petermoorey@gmail.com');
-  username = 'pmoorey';
   notifications: Notification[];
   notificationsUnread: Notification[];
 
