@@ -6,6 +6,7 @@ import { Settings } from '../settings/settings.model';
 import { DatabaseService } from '../database.service';
 import { Notification } from '../notification.model';
 import { AuthService } from '../auth.service';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-nav',
@@ -16,7 +17,7 @@ import { AuthService } from '../auth.service';
 export class NavComponent implements OnInit {
 
   constructor(private breakpointObserver: BreakpointObserver, public dataService: DatabaseService, public auth: AuthService) {}
-
+  user: User = new User;
   notifications: Notification[];
   notificationsUnread: Notification[];
 
@@ -32,14 +33,18 @@ export class NavComponent implements OnInit {
 
 
   ngOnInit() {
-    // get notifications
-    this.dataService.getNotifications().subscribe(data => {
-      this.notifications = data.map(e => {
-        return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
+    this.auth.user$.subscribe(res => {
+      this.user = res;
+      this.dataService.getNotifications(this.user.uid).subscribe(data => {
+        this.notifications = data.map(e => {
+          return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
+        });
       });
     });
+    // get notifications
+
     // get notifications count
-    this.dataService.getUnreadNotificationCount().subscribe(data => {
+    this.dataService.getUnreadNotificationCount(this.user.uid).subscribe(data => {
       this.notificationsUnread = data.map(e => {
         return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
       });

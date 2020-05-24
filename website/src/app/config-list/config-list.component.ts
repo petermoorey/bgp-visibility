@@ -3,7 +3,8 @@ import { DatabaseService } from '../database.service';
 import { Prefix} from '../prefix.model';
 import { Notification } from '../notification.model';
 import { Event } from '../event.model';
-
+import { User } from '../user.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-config-list',
@@ -17,20 +18,23 @@ export class ConfigListComponent implements OnInit {
   displayedColumns: string[] = ['prefix', 'created', 'number_events', 'alert', 'delete'];
   events = [];
 
-  constructor(public dataService: DatabaseService) {}
+  constructor(public dataService: DatabaseService, public auth: AuthService) {}
+  user: User = new User;
 
   ngOnInit(): void {
-
-    // get prefixes
-    this.dataService.getPrefixes().subscribe(data => {
-      this.prefixes = data.map(e => {
-        return { id: e.payload.doc.id, ...e.payload.doc.data() as Prefix} as Prefix;
+    this.auth.user$.subscribe(res => {
+      this.user = res;
+      // get prefixes
+      this.dataService.getPrefixes(this.user.uid).subscribe(data => {
+        this.prefixes = data.map(e => {
+          return { id: e.payload.doc.id, ...e.payload.doc.data() as Prefix} as Prefix;
+        });
       });
-    });
-    // get events
-    this.dataService.getEvents().subscribe(data => {
-      this.events = data.map(e => {
-        return { id: e.payload.doc.id, ...e.payload.doc.data() as Event} as Event;
+      // get events
+      this.dataService.getEvents(this.user.uid).subscribe(data => {
+        this.events = data.map(e => {
+          return { id: e.payload.doc.id, ...e.payload.doc.data() as Event} as Event;
+        });
       });
     });
   }
