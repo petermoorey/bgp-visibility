@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
-import { Settings } from '../settings/settings.model';
-import { DatabaseService } from '../database.service';
-import { Notification } from '../notification.model';
-import { AuthService } from '../auth.service';
-import { User } from '../user.model';
+import { Notification } from '../models/notification.model';
+import { AuthService } from '../services/auth.service';
+import { DatabaseService } from '../services/firestore-db.service';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-nav',
@@ -16,10 +15,10 @@ import { User } from '../user.model';
 
 export class NavComponent implements OnInit {
 
-  constructor(private breakpointObserver: BreakpointObserver, public dataService: DatabaseService, public auth: AuthService) {}
+  constructor(private breakpointObserver: BreakpointObserver, public auth: AuthService, private dbService: DatabaseService) {}
   user: User = new User;
-  notifications: Notification[];
-  notificationsUnread: Notification[];
+  notifications: Notification[] = [];
+  notificationsUnread: Notification[] = [];
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
@@ -27,24 +26,27 @@ export class NavComponent implements OnInit {
     shareReplay()
   );
 
-  processEvents(notification: Notification){
-    // this.dataService.createNotification(notification);
-  }
-
-
   ngOnInit() {
     this.auth.user$.subscribe(res => {
       this.user = res;
-      this.dataService.getNotifications(this.user.uid).subscribe(data => {
-        this.notifications = data.map(e => {
-          return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
-        });
+      this.getNotifications(this.user.uid);
+      this.getNotificationsUnread(this.user.uid);
+    });
+  }
+
+
+  getNotifications(uid: string) {
+    this.notifications = [];
+    this.dbService.getNotficationPromise(uid).subscribe(data => {
+      this.notifications = data.map(e => {
+        return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
       });
     });
-    // get notifications
+  }
 
-    // get notifications count
-    this.dataService.getUnreadNotificationCount(this.user.uid).subscribe(data => {
+  getNotificationsUnread(uid: string) {
+    this.notificationsUnread = [];
+    this.dbService.getNotficationUnreadPromise(uid).subscribe(data => {
       this.notificationsUnread = data.map(e => {
         return { id: e.payload.doc.id, ...e.payload.doc.data() as Notification} as Notification;
       });
@@ -55,7 +57,7 @@ export class NavComponent implements OnInit {
     this.notificationsUnread.forEach(notification => {
       notification.seen = true;
       console.log('marking seen: ' + notification.message);
-      this.dataService.updateNotification(notification);
+      this.dbService.updateNotification(notification);
     });
   }
 }

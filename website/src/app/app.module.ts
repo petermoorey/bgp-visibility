@@ -10,8 +10,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatBadgeModule } from '@angular/material/badge';
 import { AppComponent } from './app.component';
-import { ConfigListComponent } from './config-list/config-list.component';
-import { EventDashboardComponent } from './event-dashboard/event-dashboard.component';
 import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -23,24 +21,30 @@ import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { SettingsComponent } from './settings/settings.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './services/auth.guard';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
+import { LoginComponent } from './login/login.component';
+import { NetworksComponent } from './networks/networks.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ConfigListComponent,
-    EventDashboardComponent,
     NavComponent,
-    SettingsComponent,
+    HomeComponent,
+    ProfileComponent,
+    LoginComponent,
+    NetworksComponent,
+    SearchComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +75,7 @@ import { AppRoutingModule } from './app-routing.module';
     MatChipsModule,
     MatSlideToggleModule
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

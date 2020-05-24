@@ -1,0 +1,23 @@
+<div *ngIf="auth.user$ | async; then authenticated else guest"></div>
+
+<ng-template #authenticated>
+  <div>
+    <span>Welcome {{ user.displayName }}</span>
+        <button mat-menu-item (click)="auth.signOut()">
+            <mat-icon>logout</mat-icon>
+            <span>Logout</span>
+        </button>
+  </div>
+</ng-template>
+
+<ng-template #guest>
+    <div>
+      <span>Welcome, please login!</span>
+          <button mat-menu-item (click)="auth.googleSignin()">
+              <mat-icon>perm_identity</mat-icon>
+              <span>Login</span>
+          </button>
+    </div>
+  </ng-template>
+
+<div height=250px class="custom-img"></div>

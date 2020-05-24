@@ -24,40 +24,36 @@
     <div *ngIf="auth.user$ | async; then authenticated else guest"></div>
 
     <ng-template #authenticated>
-      <span *ngIf="auth.user$ | async as user">
-        <button (click)="onClickMarkNotificationsRead()" mat-button [matMenuTriggerFor]="menu_events">
-          <mat-icon mat-icon *ngIf="notificationsUnread.length > 0" matBadge="{{ notificationsUnread.length }}" matBadgeColor="warn">announcement</mat-icon>
-          <mat-icon mat-icon *ngIf="notificationsUnread.length == 0">announcement</mat-icon>
-        </button>
-        <mat-menu #menu_events="matMenu">
-          <div *ngFor="let event of notifications">
-            <button mat-menu-item>
-
-              <mat-icon>{{ event.severity }}</mat-icon>
-              <span>{{ event.message }} </span>
-            </button>
-          </div>
-        </mat-menu>
-      </span>
-
-      <span *ngIf="auth.user$ | async as user">
-        <button mat-button [matMenuTriggerFor]="menu_settings">
-          <mat-icon>perm_identity</mat-icon>
-        </button>
-        <mat-menu #menu_settings="matMenu">
+      <button (click)="onClickMarkNotificationsRead()" mat-button [matMenuTriggerFor]="menu_events">
+        <mat-icon mat-icon *ngIf="notificationsUnread.length > 0" matBadge="{{ notificationsUnread.length }}" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon mat-icon *ngIf="notificationsUnread.length == 0">announcement</mat-icon>
+      </button>
+      <mat-menu #menu_events="matMenu">
+        <div *ngFor="let event of notifications">
           <button mat-menu-item>
-            <span>Welcome {{ user.displayName }}</span>
+
+            <mat-icon>{{ event.severity }}</mat-icon>
+            <span>{{ event.message }} </span>
           </button>
-          <button mat-menu-item>
-            <mat-icon>notifications_off</mat-icon>
-            <span>Disable notifications</span>
-          </button>
-          <button mat-menu-item (click)="auth.signOut()">
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-          </button>
-        </mat-menu>
-      </span>
+        </div>
+      </mat-menu>
+
+      <button mat-button [matMenuTriggerFor]="menu_settings">
+        <mat-icon>perm_identity</mat-icon>
+      </button>
+      <mat-menu #menu_settings="matMenu">
+        <button mat-menu-item>
+          <span>Welcome {{ user.displayName }}</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>notifications_off</mat-icon>
+          <span>Disable notifications</span>
+        </button>
+        <button mat-menu-item (click)="auth.signOut()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
     </ng-template>
 
     <ng-template #guest>
@@ -70,6 +66,3 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div height=250px class="custom-img"></div>
-<app-event-dashboard></app-event-dashboard>
-<app-config-list></app-config-list>
-

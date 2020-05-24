@@ -1,0 +1,67 @@
+<app-search></app-search>
+<div *ngIf="networks.length > 0; then results else noresults"></div>
+
+<ng-template #noresults>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <mat-card style="width: 100%; box-sizing: border-box;">
+        <mat-card-content>
+        <h2>My Networks</h2>
+        <div>No networks have been added, search to find one</div>
+        </mat-card-content>
+    </mat-card>
+    </div>
+</ng-template>
+
+
+<ng-template #results>
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <mat-card style="width: 100%; box-sizing: border-box;">
+        <mat-card-content>
+        <h2>My Networks ({{ networks.length }})</h2>
+        <table style="width: 100%" mat-table [dataSource]="networks">
+        
+            <!-- Network Column -->
+            <ng-container matColumnDef="network">
+            <th mat-header-cell *matHeaderCellDef> Network </th>
+            <td mat-cell *matCellDef="let element"> {{element.network}} </td>
+            </ng-container>
+        
+            <!-- Date Column -->
+            <ng-container matColumnDef="created">
+            <th mat-header-cell *matHeaderCellDef> Date Added </th>
+            <td mat-cell *matCellDef="let element"> {{ element.created.toDate()  | date : 'mediumDate' }} </td>
+            </ng-container>
+
+            <!-- Event Counter Column -->
+            <ng-container matColumnDef="number_events">
+            <th mat-header-cell *matHeaderCellDef> Event Count (24hrs)</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-chip-list aria-label="Color selection">
+                <mat-chip *ngIf="getEventCountOriginChanged(element.network) > 0" color="primary" selected>AS Origin Changed ({{ getEventCountOriginChanged(element.network) }})</mat-chip>
+                <mat-chip *ngIf="getEventCountPathChange(element.network) > 0" color="warn" selected>AS Path Changed ({{ getEventCountPathChange(element.network) }})</mat-chip>
+            </mat-chip-list></td>
+            </ng-container>
+
+            <!-- Notification Column-->
+            <ng-container matColumnDef="alert">
+            <th mat-header-cell *matHeaderCellDef> Notifications</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-slide-toggle color=primary [checked]="element.alert === true"></mat-slide-toggle>
+            </td>
+            </ng-container>
+
+            <!-- Delete Column-->
+            <ng-container matColumnDef="delete">
+            <th mat-header-cell *matHeaderCellDef> Delete</th>
+            <td mat-cell *matCellDef="let element">
+                <mat-icon (click)="onClickDeleteNetwork(element)">delete</mat-icon>
+            </td>
+            </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        </mat-card-content>
+    </mat-card>
+    </div>
+</ng-template>

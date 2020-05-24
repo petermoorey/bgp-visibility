@@ -1,0 +1,82 @@
+<div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <mat-card style="width: 100%; box-sizing: border-box;">
+      <mat-card-header>
+  
+      </mat-card-header>
+      <mat-card-content >
+        <h2>Search</h2>
+        <mat-form-field style="width:100%; max-width: 400px;" appearance="fill">
+          <mat-label>Enter a BGP ASN</mat-label>
+          <input matInput [(ngModel)]="asn">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button [disabled]="!asn" mat-raised-button color="primary" (click)="onClickAddASN()">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <div *ngIf="status === 'finished'" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <div *ngIf="peers.length === 0">
+      <mat-progress-spinner mode="indeterminate" style="margin: 0 10px; margin-top: 20px"></mat-progress-spinner>
+    </div>
+    <mat-accordion>
+  
+      <mat-expansion-panel expanded>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Summary for {{ overview.holder }} ({{ overview.resource }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+          <mat-label>AS Holder: </mat-label>
+          <i>{{ overview.holder }}</i><br>
+          <mat-label>AS Number: </mat-label>
+          <i>{{ overview.resource }}</i><br>
+          <mat-label>Announced: </mat-label>
+          <i>{{ overview.announced }}</i><br>
+          <mat-label>Block Name: </mat-label>
+          <i>{{ overview.block.name }}</i><br>
+          <mat-label>Block Description: </mat-label>
+          <i>{{ overview.block.desc }}</i><br>
+      </mat-expansion-panel>
+  
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Peers ({{ peers.length }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap">
+          <mat-card *ngFor="let peer of peers" style="margin: 10px;">
+            <mat-card-content>
+              ASN {{ peer.asn }}<br>
+              <!-- Level of Influence: -->
+              <section class="custom-progress-bar">
+                Level of Influence:<br>
+                <mat-progress-bar value="{{ peer.power }}" mode="determinate"></mat-progress-bar>
+              </section>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-expansion-panel>
+    
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Network Prefixes ({{ prefixes.length }})
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div fxLayout="row wrap">
+          <mat-card *ngFor="let prefix of prefixes" style="margin: 10px;">
+            <mat-card-content class="valign-center">
+              {{ prefix.prefix }} 
+              <button (click)="onClickAddNetwork(prefix.prefix)" color="primary" mat-icon-button aria-label="Monitor this prefix">
+                <mat-icon>add</mat-icon>
+              </button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      </mat-expansion-panel>
+      
+    </mat-accordion>
+  </div>
