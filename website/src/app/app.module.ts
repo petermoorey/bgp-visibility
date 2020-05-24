@@ -35,6 +35,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
 import { NetworksComponent } from './networks/networks.component';
 import { SearchComponent } from './search/search.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -75,7 +76,7 @@ import { SearchComponent } from './search/search.component';
     MatChipsModule,
     MatSlideToggleModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
