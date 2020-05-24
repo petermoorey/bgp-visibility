@@ -38,9 +38,9 @@
           <ng-container matColumnDef="number_events">
             <th mat-header-cell *matHeaderCellDef> Event Count (24hrs)</th>
             <td mat-cell *matCellDef="let element">
-              <mat-chip-list aria-label="Color selection">None
-              <!-- <mat-chip *ngIf="getEventCountOriginChanged(element.prefix) > 0" color="primary" selected>AS Origin Changed ({{ getEventCountOriginChanged(element.prefix) }})</mat-chip>
-              <mat-chip *ngIf="getEventCountPathChange(element.prefix) > 0" color="warn" selected>AS Path Changed ({{ getEventCountPathChange(element.prefix) }})</mat-chip> -->
+              <mat-chip-list aria-label="Color selection">
+                <mat-chip *ngIf="getEventCountOriginChanged(element.prefix) > 0" color="primary" selected>AS Origin Changed ({{ getEventCountOriginChanged(element.prefix) }})</mat-chip>
+              <mat-chip *ngIf="getEventCountPathChange(element.prefix) > 0" color="warn" selected>AS Path Changed ({{ getEventCountPathChange(element.prefix) }})</mat-chip>
             </mat-chip-list></td>
           </ng-container>
 
