@@ -16,13 +16,13 @@
     </mat-card>
   </div>
   
-  <div *ngIf="status === 'finished'" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+  <div *ngIf="status === 'finished'" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px; width: 100%">
     <div *ngIf="peers.length === 0">
       <mat-progress-spinner mode="indeterminate" style="margin: 0 10px; margin-top: 20px"></mat-progress-spinner>
     </div>
     <mat-accordion>
   
-      <mat-expansion-panel expanded>
+      <mat-expansion-panel  expanded>
         <mat-expansion-panel-header>
           <mat-panel-title>
             Summary for {{ overview.holder }} ({{ overview.resource }})
