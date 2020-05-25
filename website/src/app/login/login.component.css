@@ -6,8 +6,20 @@ div.centre {
     text-align: left;
     margin-top: 100px;
     width: 50%;
-    background-color: #eee;
+    background-color: lightgray;
     display: block;
     margin-left: auto;
     margin-right: auto;
-    }
+  }
+div.full-height {
+    height: 100%;
+    margin: 0px;
+  }
+::ng-deep body {
+  height: 100%;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  background-image: url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2982&q=80');
+}
