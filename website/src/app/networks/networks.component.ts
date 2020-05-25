@@ -4,7 +4,6 @@ import { Network } from '../models/network.model';
 import { Event} from '../models/event.model';
 import { AuthService } from '../services/auth.service';
 import { DatabaseService } from '../services/firestore-db.service';
-import { logging } from 'protractor';
 
 @Component({
   selector: 'app-networks',
@@ -18,7 +17,7 @@ export class NetworksComponent implements OnInit {
   user: User = new User;
   networks: Network[] = [];
   events: Event[] = [];
-  displayedColumns: string[] = ['network', 'created', 'number_events', 'alert', 'delete'];
+  displayedColumns: string[] = ['network', 'number_events', 'alert', 'delete'];
 
   ngOnInit() {
     this.auth.user$.subscribe(res => {

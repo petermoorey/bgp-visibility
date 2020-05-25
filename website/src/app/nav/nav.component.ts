@@ -29,8 +29,12 @@ export class NavComponent implements OnInit {
   ngOnInit() {
     this.auth.user$.subscribe(res => {
       this.user = res;
-      this.getNotifications(this.user.uid);
-      this.getNotificationsUnread(this.user.uid);
+      if (this.user != null) {
+        this.getNotifications(this.user.uid);
+        this.getNotificationsUnread(this.user.uid);
+        console.log(this.user.displayName);
+        console.log(this.notifications);
+      }
     });
   }
 
