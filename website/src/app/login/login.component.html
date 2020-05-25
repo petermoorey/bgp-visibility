@@ -1,23 +1,22 @@
-<div *ngIf="auth.user$ | async; then authenticated else guest"></div>
-
-<ng-template #authenticated>
-  <div>
-    <span>Welcome {{ user.displayName }}</span>
-        <button mat-menu-item (click)="auth.signOut()">
-            <mat-icon>logout</mat-icon>
-            <span>Logout</span>
-        </button>
-  </div>
-</ng-template>
-
-<ng-template #guest>
-    <div>
-      <span>Welcome, please login!</span>
-          <button mat-menu-item (click)="auth.googleSignin()">
-              <mat-icon>perm_identity</mat-icon>
-              <span>Login</span>
-          </button>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+  <div class="layout">
+    <div class="centre" style="text-align: center;">
+      <mat-card style="width: 100%; box-sizing: border-box;">
+        <mat-card-content>
+          <h2>Sign In</h2>
+          <div class="col s12 m6 offset-m3 center-align">
+            <a class="oauth-container btn darken-4 white black-text" (click)="auth.googleSignin()" style="text-transform:none">
+                <div class="left">
+                    <img width="20px" style="margin-top:7px; margin-right:8px" alt="Google sign-in" 
+                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+                </div>
+                Login with Google
+            </a>
+          </div>
+        </mat-card-content>
+    </mat-card>
     </div>
-  </ng-template>
-
-<div height=250px class="custom-img"></div>
+  </div>

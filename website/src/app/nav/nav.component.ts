@@ -32,8 +32,6 @@ export class NavComponent implements OnInit {
       if (this.user != null) {
         this.getNotifications(this.user.uid);
         this.getNotificationsUnread(this.user.uid);
-        console.log(this.user.displayName);
-        console.log(this.notifications);
       }
     });
   }

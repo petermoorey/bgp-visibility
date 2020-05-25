@@ -1,0 +1,13 @@
+div.layout {
+    text-align: center;
+  }
+  
+div.centre {
+    text-align: left;
+    margin-top: 100px;
+    width: 50%;
+    background-color: #eee;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    }
