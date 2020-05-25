@@ -1,6 +1,6 @@
-<mat-toolbar color="primary">  
+<mat-toolbar style="background-color: rgb(44, 43, 43);">  
   <mat-toolbar-row>
-    <span>Internet Monitoring</span>
+    <span style="padding-left: 6px; color: azure;">Internet Insights</span>
     <span style="width: 15px;"></span>
 
     <!-- <span>
@@ -25,8 +25,8 @@
 
     <ng-template #authenticated>
       <button (click)="onClickMarkNotificationsRead()" mat-button [matMenuTriggerFor]="menu_events">
-        <mat-icon mat-icon *ngIf="notificationsUnread.length > 0" matBadge="{{ notificationsUnread.length }}" matBadgeColor="warn">announcement</mat-icon>
-        <mat-icon mat-icon *ngIf="notificationsUnread.length == 0">announcement</mat-icon>
+        <mat-icon style="color: white;" mat-icon *ngIf="notificationsUnread.length > 0" matBadge="{{ notificationsUnread.length }}" matBadgeColor="warn">announcement</mat-icon>
+        <mat-icon style="color: white;" mat-icon *ngIf="notificationsUnread.length == 0">announcement_outline</mat-icon>
       </button>
       <mat-menu #menu_events="matMenu">
         <div *ngFor="let event of notifications">

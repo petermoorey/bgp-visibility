@@ -1,8 +1,9 @@
+<app-nav></app-nav>
 <app-search></app-search>
 <div *ngIf="networks.length > 0; then results else noresults"></div>
 
 <ng-template #noresults>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 20px">
     <mat-card style="width: 100%; box-sizing: border-box;">
         <mat-card-content>
         <h2>My Networks</h2>
@@ -14,7 +15,7 @@
 
 
 <ng-template #results>
-    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 10px">
+    <div fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="left" style="padding: 20px">
     <mat-card style="width: 100%; box-sizing: border-box;">
         <mat-card-content>
         <h2>My Networks ({{ networks.length }})</h2>
