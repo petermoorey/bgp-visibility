@@ -31,8 +31,19 @@ Below are some ideas that I hope to incorporate into the website, thanks to r/ne
 - Setup Git Hub Action to containerize, build and publish the website to Google Cloud Run on each 'push' of new Git commit/s
 - Setup https://bgprouting.net website and related it to Google Cloud Run
 
-## Sprint 2 (Future)
+## Sprint 2
 - Complete 50% of Angular course
-- Setup Firebase or Django DRF backend
+- Setup Firebase backend for authentication and database services
 - Enable user to select ASN/prefixes of interest
-- Highlight recent routing changes
+- Highlight recent routing changes for selected prefixes
+- Updated UI theme and reorganized project/components
+
+## Sprint 3 (upcoming)
+- Complete 70% of Angular course
+- Create an API/cloud function for delivery of notifications via:
+  - Email
+  - Webhook
+  - Web UI/database
+- Create a handler/process for detection of prefixes originating from unauthorized ASN
+
+
