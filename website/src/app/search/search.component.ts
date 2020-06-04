@@ -37,8 +37,11 @@ export class SearchComponent implements OnInit {
     this.dbService.createNetwork({
       network: network,
       seen: false,
-      alert: true,
-      uid: this.user.uid
+      uid: this.user.uid,
+      settings: {
+        notifyEmail: true,
+        notifyWebhook: true
+      }
     });
   }
 

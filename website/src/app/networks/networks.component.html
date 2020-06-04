@@ -44,12 +44,20 @@
             </ng-container>
 
             <!-- Notification Column-->
-            <ng-container matColumnDef="alert">
-            <th mat-header-cell *matHeaderCellDef> Notifications</th>
+            <ng-container matColumnDef="settings.notifyWebhook">
+            <th mat-header-cell *matHeaderCellDef> Webhook Notification</th>
             <td mat-cell *matCellDef="let element">
-                <mat-slide-toggle color=primary [checked]="element.alert === true"></mat-slide-toggle>
+                <mat-slide-toggle color=primary [checked]="element.settings.notifyWebhook === true"></mat-slide-toggle>
             </td>
             </ng-container>
+
+            <!-- Notification Column-->
+            <ng-container matColumnDef="settings.notifyEmail">
+                <th mat-header-cell *matHeaderCellDef> Email Notification</th>
+                <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle color=primary [checked]="element.settings.notifyEmail === true"></mat-slide-toggle>
+                </td>
+                </ng-container>
 
             <!-- Delete Column-->
             <ng-container matColumnDef="delete">

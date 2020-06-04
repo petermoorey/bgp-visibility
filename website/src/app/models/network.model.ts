@@ -1,9 +1,13 @@
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
+
+export class Settings {
+    notifyEmail: boolean;
+    notifyWebhook: boolean;
+}
 
 export class Network {
   id: string;
   network: string;
   uid: string;
-  alert: boolean;
   created: Date;
+  settings: Settings;
 }

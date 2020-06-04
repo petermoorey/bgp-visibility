@@ -17,7 +17,7 @@ export class NetworksComponent implements OnInit {
   user: User = new User;
   networks: Network[] = [];
   events: Event[] = [];
-  displayedColumns: string[] = ['network', 'number_events', 'alert', 'delete'];
+  displayedColumns: string[] = ['network', 'number_events', 'settings.notifyEmail', 'settings.notifyWebhook', 'delete'];
 
   ngOnInit() {
     this.auth.user$.subscribe(res => {
