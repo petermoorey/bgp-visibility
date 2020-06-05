@@ -72,9 +72,9 @@ export class NetworksComponent implements OnInit {
       uid: this.user.uid
     });
   }
-  openDialog(events: Event[]) {
+  openDialog(events: Event[], network: Network) {
     this.dialog.open(NetworkDialogComponent, {
-      data: events,
+      data: {events, network},
       maxHeight: '90vh',
       width: '60vh'
     });

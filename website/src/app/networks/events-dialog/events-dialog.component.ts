@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class NetworkDialogComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: Event[]) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
   }
