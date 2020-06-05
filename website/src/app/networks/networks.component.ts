@@ -4,6 +4,8 @@ import { Network } from '../models/network.model';
 import { Event} from '../models/event.model';
 import { AuthService } from '../services/auth.service';
 import { DatabaseService } from '../services/firestore-db.service';
+import { NetworkDialogComponent } from './events-dialog/events-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-networks',
@@ -12,7 +14,7 @@ import { DatabaseService } from '../services/firestore-db.service';
 })
 export class NetworksComponent implements OnInit {
 
-  constructor(public auth: AuthService, private dbService: DatabaseService) { }
+  constructor(public auth: AuthService, private dbService: DatabaseService, public dialog: MatDialog) { }
 
   user: User = new User;
   networks: Network[] = [];
@@ -68,6 +70,13 @@ export class NetworksComponent implements OnInit {
       seen: false,
       severity: 'info',
       uid: this.user.uid
+    });
+  }
+  openDialog(events: Event[]) {
+    this.dialog.open(NetworkDialogComponent, {
+      data: events,
+      maxHeight: '90vh',
+      width: '60vh'
     });
   }
 }

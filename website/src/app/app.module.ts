@@ -18,6 +18,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatDialogModule } from '@angular/material/dialog';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -36,6 +37,7 @@ import { LoginComponent } from './login/login.component';
 import { NetworksComponent } from './networks/networks.component';
 import { SearchComponent } from './search/search.component';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { NetworkDialogComponent } from './networks/events-dialog/events-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +48,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     LoginComponent,
     NetworksComponent,
     SearchComponent,
+    NetworkDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     RouterModule,
     AppRoutingModule,
     MatTableModule,
+    MatDialogModule,
     MatChipsModule,
     MatSlideToggleModule
   ],
