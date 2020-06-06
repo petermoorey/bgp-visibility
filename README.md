@@ -19,8 +19,8 @@ Below are some ideas that I hope to incorporate into the website, thanks to r/ne
 - Alert on incidents within an ASN (basically a free version of BGPMon).  
 - Assessment of BGP security (RPKI etc.)
 - Streaming of live routing events/notifications
-- Build Angular website, with Firebase or Django Rest Framework backend
-- Host webiste on Google Cloud Run
+- Build Angular website, with Firebase backend
+- Host website on Google Cloud Run
 
 ## Sprint 1
 - Completed 30% of Angular course on Udemy
