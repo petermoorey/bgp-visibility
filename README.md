@@ -2,7 +2,7 @@
 
 ![Build and Deploy to Cloud Run](https://github.com/pmoorey/bgp-visibility/workflows/Build%20and%20Deploy%20to%20Cloud%20Run/badge.svg?branch=master)
 
-This is a personal project with two objectives; learn Angular frontend development, and provide a public service to disover information about Border Gateway Protocol (BGP), the routing protocol of the Internet. 
+This is a personal project with two objectives; learn Angular frontend development, and provide a public service to discover information about Border Gateway Protocol (BGP), the routing protocol of the Internet. 
 
 You can visit the website at https://bgprouting.net.  It's a work in progress so don't expect much.  The current focus is to learn Angular, the functionality of the website itself isn't the first priority.
 
