@@ -6,17 +6,14 @@ import * as firebase from 'firebase';
 @Injectable({
   providedIn: 'root'
 })
-export class DatabaseService implements OnInit{
+export class DatabaseService {
 
   constructor(private firestore: AngularFirestore) { }
 
   db: any;
 
-  ngOnInit() {
-  }
-
   getEventPromise(uid: string) {
-    return this.firestore.collection('events').snapshotChanges();
+    return this.firestore.collection('events', ref => ref.where('uid', '==', uid)).snapshotChanges();
   }
   getNotficationPromise(uid: string) {
     return this.firestore.collection('notifications', ref => ref.where('uid', '==', uid)).snapshotChanges();

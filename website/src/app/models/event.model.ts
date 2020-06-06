@@ -3,4 +3,5 @@ export class Event {
   network: string;
   type: string;
   value: string;
+  uid: string;
 }

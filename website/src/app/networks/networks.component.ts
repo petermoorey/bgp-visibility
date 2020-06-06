@@ -47,7 +47,7 @@ export class NetworksComponent implements OnInit {
   getEventCountOriginChanged(network) {
     let count1 = 0;
     this.events.forEach(element => {
-      if (element.network === network && element.type === 'as-origin-change') {
+      if (element.network === network && element.type === 'AS Origin Change') {
         count1 ++;
       }
     });
@@ -56,7 +56,7 @@ export class NetworksComponent implements OnInit {
   getEventCountPathChange(network) {
     let count = 0;
     this.events.forEach(element => {
-      if (element.network === network && element.type === 'as-path-change') {
+      if (element.network === network && element.type === 'AS Path Change') {
         count ++;
       }
     });
@@ -76,7 +76,7 @@ export class NetworksComponent implements OnInit {
     this.dialog.open(NetworkDialogComponent, {
       data: {events, network},
       maxHeight: '90vh',
-      width: '60vh'
+      maxWidth: '90vh'
     });
   }
 }

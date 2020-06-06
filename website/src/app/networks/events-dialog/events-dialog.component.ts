@@ -13,5 +13,8 @@ export class NetworkDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  stringToDict(object: string){
+    return JSON.parse(object);
+  }
 
 }
