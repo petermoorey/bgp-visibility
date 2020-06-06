@@ -6,6 +6,8 @@ This is a personal project with two objectives; learn Angular frontend developme
 
 You can visit the website at https://bgprouting.net.  It's a work in progress so don't expect much.  The current focus is to learn Angular, the functionality of the website itself isn't the first priority.
 
+![](https://github.com/pmoorey/bgp-visibility/blob/master/docs/sample-screenshot.png)
+
 ## Ideas
 
 Below are some ideas that I hope to incorporate into the website, thanks to r/networking community on Reddit for some of these!
