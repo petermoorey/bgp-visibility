@@ -9,9 +9,10 @@
           <mat-label>Enter a BGP ASN</mat-label>
           <input matInput [(ngModel)]="asn">
         </mat-form-field>
+        <button style="margin-left: 20px;" [disabled]="!asn" mat-raised-button color="primary" (click)="onClickAddASN()">Submit</button>
       </mat-card-content>
       <mat-card-actions>
-        <button [disabled]="!asn" mat-raised-button color="primary" (click)="onClickAddASN()">Submit</button>
+        
       </mat-card-actions>
     </mat-card>
   </div>
